@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <utility>
 #include <cmath>
 
 const int ALPHABET_NUM = 26;
@@ -27,15 +28,31 @@ int factorial(int n) {
     return 1;
 }
 
+//find the diff permutations
+void permute(string s, int start, int end) {
+    // base case, if we are looking at the same letter/index
+    if (start == end) {
+        cout << s << "/n";
+    } else {
+        for (int i = start; i <= end; i++) {
+            swap(s[start], s[i]);
+            permute(s, start + 1, end);
+            // backtrack
+            swap(s[start], s[i]);
+        }
+    }
+
+
+}
 
 
 int main() {
-    string testWord = "ayqr?be";
-    int wordLength = testWord.length();
-    sort(testWord.begin(), testWord.end());
-    cout << testWord;
+    string word = "ayqr?be";
+    int wordLength = word.length();
+    sort(word.begin(), word.end());
+    cout << word;
     int min, max = 0;
-    int qMarks = checkForcheck(testWord);
+    int qMarks = checkForcheck(word);
 
     if (qMarks > 0) {
         // 26^q * (n-q)!
@@ -45,6 +62,8 @@ int main() {
     } else {
         max = factorial(wordLength);
     }
+
+  
 
     return 0;
 }
