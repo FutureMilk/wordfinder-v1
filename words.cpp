@@ -5,6 +5,7 @@
 #include <utility>
 #include <cmath>
 #include <fstream>
+#include <vector>
 
 const int ALPHABET_NUM = 26;
 
@@ -69,6 +70,10 @@ int main() {
     } else {
         max = factorial(wordLength);
     }
+
+    // reserve space in vector
+    vector<string> allWords;
+    allWords.reserve(max);
 
     string newWord = "";
     for (int i = 0; i < wordLength; i++) {
