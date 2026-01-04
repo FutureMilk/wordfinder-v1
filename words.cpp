@@ -11,12 +11,12 @@ using namespace std;
 
 
 int main() {
-    string word = "ayqr?be";
+    string word = "ayqrbe";
     
     for (auto& x : word) {
-        word = toupper(x);
+        x = toupper(x);
     }
-    
+
     int wordLength = word.length();
     sort(word.begin(), word.end());
     cout << word;
