@@ -6,6 +6,12 @@ const int ALPHABET_NUM = 26;
 
 using namespace std;
 
+int checkForcheck(string &word);
+int factorial(int n);
+void permute(string s, int start, int end, set<string> &allWords);
+bool dicCheck(string word);
+
+
 
 int main() {
     string word = "ayqr?be";
@@ -25,13 +31,17 @@ int main() {
     }
 
     // reserve space in vector
-    vector<string> allWords;
-    allWords.reserve(max);
+    set<string> allWords;
+    // allWords.reserve(max);
 
     string newWord = "";
     for (int i = 0; i < wordLength; i++) {
         newWord += word[i];
-        permute(newWord, 0, newWord.length());
+        permute(newWord, 0, newWord.length(), allWords);
+    }
+
+    for (auto x: allWords) {
+        cout << x << "\n";
     }
     
 

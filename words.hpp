@@ -9,6 +9,17 @@
 
 using namespace std;
 
+// Comparator struct
+// struct CompareMyStruct {
+//     bool operator()(const MyStruct& lhs, const MyStruct& rhs) const {
+//         // Sort primarily by 'order', secondarily by 'data'
+//         if (lhs.order != rhs.order) {
+//             return lhs.order < rhs.order;
+//         }
+//         return lhs.data < rhs.data;
+//     }
+// };
+
 // checks if there's and exclamation point in the word
 int checkForcheck(string &word) {
     int ctr = 0;
@@ -29,14 +40,17 @@ int factorial(int n) {
 }
 
 //find the diff permutations
-void permute(string s, int start, int end) {
+void permute(string s, int start, int end, set<string> &allWords) {
     // base case, if we are looking at the same letter/index
     if (start == end) {
-        cout << s << "\n";
+        // cout << s << "\n";
+        if (dicCheck(s)) {
+            allWords.insert(s);
+        }
     } else {
         for (int i = start; i <= end; i++) {
             swap(s[start], s[i]);
-            permute(s, start + 1, end);
+            permute(s, start + 1, end, allWords);
             // backtrack
             swap(s[start], s[i]);
         }
@@ -51,3 +65,4 @@ bool dicCheck(string word) {
     }
     return false;
 }
+
