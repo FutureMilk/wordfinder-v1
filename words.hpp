@@ -73,11 +73,13 @@ void dicRead(vector<string> &dic) {
 
 bool dicCheck(vector<string> &dictionary, string word) {
     // loop through the dictionary
-    string 
-    for (auto w : dictionary) {
-        if (w == word) {
+    // string w = dictionary[0];
+
+    for (int i = 0; i < dictionary.size(); i++) {
+        if (dictionary[i] == word) {
             return true;
         }
     }
+
     return false;
 }
