@@ -6,10 +6,7 @@ const int ALPHABET_NUM = 26;
 
 using namespace std;
 
-int checkForcheck(string &word);
-int factorial(int n);
-void permute(string s, int start, int end, set<string> &allWords);
-bool dicCheck(string word);
+
 
 
 
@@ -21,6 +18,10 @@ int main() {
     int min, max = 0;
     int qMarks = checkForcheck(word);
 
+    vector<string> dictionary;
+    dictionary.reserve(267751);
+    dicRead(dictionary);
+    
     if (qMarks > 0) {
         // 26^q * (n-q)!
         // 26 letter options for each question mark,

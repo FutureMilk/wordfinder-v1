@@ -20,6 +20,11 @@ using namespace std;
 //     }
 // };
 
+int checkForcheck(string &word);
+int factorial(int n);
+void permute(string s, int start, int end, set<string> &allWords);
+bool dicCheck(string word);
+
 // checks if there's and exclamation point in the word
 int checkForcheck(string &word) {
     int ctr = 0;
@@ -57,12 +62,11 @@ void permute(string s, int start, int end, set<string> &allWords) {
     }
 }
 
-bool dicCheck(string word) {
+// read the dictionary into a vector
+void dicRead(vector<string> &dic) {
     ifstream dictionary("words.txt");
     string _word = "";
     while (dictionary >> _word) {
-        if (_word == word) {return true;}
+       dic.push_back(_word);
     }
-    return false;
 }
-
