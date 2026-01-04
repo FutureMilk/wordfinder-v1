@@ -22,8 +22,8 @@ using namespace std;
 
 int checkForcheck(string &word);
 int factorial(int n);
-void permute(string s, int start, int end, set<string> &allWords);
-bool dicCheck(string word);
+void permute(string s, int start, int end, set<string> &allWords, vector<string> &dic);
+bool dicCheck(vector<string> &dictionary, string word);
 
 // checks if there's and exclamation point in the word
 int checkForcheck(string &word) {
@@ -45,17 +45,17 @@ int factorial(int n) {
 }
 
 //find the diff permutations
-void permute(string s, int start, int end, set<string> &allWords) {
+void permute(string s, int start, int end, set<string> &allWords, vector<string> &dic) {
     // base case, if we are looking at the same letter/index
     if (start == end) {
         // cout << s << "\n";
-        if (dicCheck(s)) {
+        if (dicCheck(dic, s)) {
             allWords.insert(s);
         }
     } else {
         for (int i = start; i <= end; i++) {
             swap(s[start], s[i]);
-            permute(s, start + 1, end, allWords);
+            permute(s, start + 1, end, allWords, dic);
             // backtrack
             swap(s[start], s[i]);
         }
@@ -69,4 +69,14 @@ void dicRead(vector<string> &dic) {
     while (dictionary >> _word) {
        dic.push_back(_word);
     }
+}
+
+bool dicCheck(vector<string> &dictionary, string word) {
+    // loop through the dictionary
+    for (auto w : dictionary) {
+        if (w == word) {
+            return true;
+        }
+    }
+    return false;
 }

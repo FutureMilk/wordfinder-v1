@@ -12,6 +12,11 @@ using namespace std;
 
 int main() {
     string word = "ayqr?be";
+    
+    for (auto& x : word) {
+        word = toupper(x);
+    }
+    
     int wordLength = word.length();
     sort(word.begin(), word.end());
     cout << word;
@@ -21,7 +26,7 @@ int main() {
     vector<string> dictionary;
     dictionary.reserve(267751);
     dicRead(dictionary);
-    
+
     if (qMarks > 0) {
         // 26^q * (n-q)!
         // 26 letter options for each question mark,
@@ -38,7 +43,7 @@ int main() {
     string newWord = "";
     for (int i = 0; i < wordLength; i++) {
         newWord += word[i];
-        permute(newWord, 0, newWord.length(), allWords);
+        permute(newWord, 0, newWord.length(), allWords, dictionary);
     }
 
     for (auto x: allWords) {
